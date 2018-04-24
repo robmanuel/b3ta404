@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta charset="UTF-8">
+<head><title>404 - file not found</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+<style type="text/css" >
+body {  font-family: Sans-Serif;}
+
+.slideshow {
+  width:80vw;
+  height:80vh;
+  margin:auto;
+  xbackground-color:white;
+  background-size:contain;
+  background-repeat:no-repeat;
+  background-position:center;
+}
+
+</style>
+</head>
+<body>
+
+<center>
+	<!--<h1><a href="http://b3ta.com/">B3ta:</a> 404 Page Not Found</h1>-->
+	<a href="http://b3ta.com/"><div id="slideshow" class="slideshow"></div></a>
+</center>
+
+
+<script>
+urlstem="http://b3ta.com/images/404/"
+
+images=["404-1.jpg","404-2.jpg","404-2017.jpg","404Finger.jpg","404l.jpg",
+		"404pt2_large.gif","404state.jpg","321404.gif","35113820235_5f30ae4472_o.gif",
+		"bw404.jpg","dFDDJ7d.gif","Error404.jpg","giphy.gif","J2elcfU.jpg",
+		"JJonesSucksAss02.jpg","luckfuck.gif","may404.jpg","maychicken2.jpg",
+		"neverfound.jpg","obiwancopy.jpg","thumb.1q67bb.jpg",
+		"thumb.B3TA.submission.01.jpg","trumppressrelease.jpg","ys404.gif","3rror.jpg",
+		"404-i.jpg","404-justice.jpg","404.gif","404.jpg","4040.gif","4041.gif",
+		"40412.gif","4042.gif","4042.jpg","4043.jpg","4044.jpg","404454.jpg","4044561.jpg",
+		"4045.jpg","4046.jpg","4047.jpg","404b0.gif","404b3ta3ly.gif","404deacon.gif",
+		"404head7sp.gif","404ii5jp.jpg","404pipe.jpg","404small.jpg","404spack.gif",
+		"404v2.gif","404v5.gif","404watch_3304.jpg","404_boris.jpg","404_countdown.jpg",
+		"404_final.gif","404_fruitmachine.gif","404_pagesmissing.jpg","404_small.jpg",
+		"4oh40by.jpg","album_pic.php.jpg","amstrad404.gif","arsewipe.gif",
+		"barrymore4049cs.gif","bjork.jpg","bush-book.gif","captions7bi.jpg","carol.jpg",
+		"cock404.gif","compo.jpg","compy.jpg","con404.jpg",
+		"destroy_a_deckchair_for_christmas.jpg","e4c.jpg","erro404.jpg","error703.gif",
+		"error816.gif","error843.gif","fruitsm.gif","gotyoururl.jpg","huge6ua.jpg",
+		"jeeves.gif","kitten404.jpg","loser.gif","maoo404.gif","quo3of.jpg","redex_mag.gif",
+		"scissors2.gif","shitcreekb3ta.jpg","tescovalue.jpg","testcard.jpg","untitled.gif",
+		"webnotfound404.jpg"]
+
+function changeImage(){
+var image1 = urlstem+images[Math.floor(Math.random()*images.length)];
+var image2 = urlstem+images[Math.floor(Math.random()*images.length)];
+
+$('#slideshow').css("background-image", "url("+image1+")");  
+$('body').css("background-image", "url("+image2+")");  
+}
+
+changeImage()
+
+setInterval(function(){ 
+changeImage()
+}, 4000);
+
+</script>
+</body>
+</html>
