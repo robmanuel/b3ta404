@@ -63,11 +63,52 @@ images=[
 		"scissors2.gif","shitcreekb3ta.jpg","tescovalue.jpg","testcard.jpg","untitled.gif",
 		"webnotfound404.jpg"]
 
+// This might look mad but here's what I'm thinking:
+// I want to cache the images so having them ordered makes sense
+// as then I can show images 1, 2 and preload 3 and 4.
+// 
+// And if I then randomise the array then it's all random
+// however this is a bit rubbish as it means images don't
+// repeat in one cycle, and I want them to be less predictable
+// than that so I've basically copying the list of images
+// onto itself several times before sorting
+
+
+Array.prototype.push.apply(images, images)
+Array.prototype.push.apply(images, images)
+Array.prototype.push.apply(images, images)
+Array.prototype.push.apply(images, images)
+		
+images.sort(function() { return 0.5 - Math.random() });
+
+counter=0
+
+$.preloadImages = function() {
+  for (var i = 0; i < arguments.length; i++) {
+    $("<img />").attr("src", arguments[i]);
+  }
+}
+
+
 function changeImage(){
-var image1 = urlstem+images[Math.floor(Math.random()*images.length)];
-var image2 = urlstem+images[Math.floor(Math.random()*images.length)];
-$('#slideshow').css("background-image", "url("+image1+")");  
-$('body').css("background-image", "url("+image2+")");  
+
+	image1 = urlstem+images[0+counter]
+	image2 = urlstem+images[1+counter]
+	$.preloadImages(urlstem+images[2+counter]);
+	$.preloadImages(urlstem+images[3+counter]);
+
+	$('body').css("background-image", "url("+image2+")");  
+	$('#slideshow').css("background-image", "url("+image1+")");  
+
+
+	counter=counter+2
+
+	if (counter>=images.length-3)
+		{
+			counter=0
+			images.sort(function() { return 0.5 - Math.random() });
+		}
+
 }
 
 changeImage()
