@@ -8,7 +8,7 @@
 A slideshow of images that displays them randomly - hopefully
 resized to use screen space AND should look ok on mobile 
 
-When I say "ok" I mean a hot 90s mess. 
+When I say "ok" I mean a hot 90s mess. But one that uses Jquery.
 
 Preloads the next images so having them ordered makes sense
 as then I can show images 1, 2 and preload 3 and 4.
@@ -128,6 +128,11 @@ Array.prototype.push.apply(images, images)
 Array.prototype.push.apply(images, images)
 		
 images.sort(function() { return 0.5 - Math.random() });
+
+// make it start with b3ta logo to give it a bit of branding
+
+images.unshift("b3ta404.gif");
+
 
 counter=0
 
