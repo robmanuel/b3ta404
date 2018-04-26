@@ -1,8 +1,36 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
+
+<!-- 
+404 by Rob Manuel - April 2018
+
+A slideshow of images that displays them randomly - hopefully
+resized to use screen space AND should look ok on mobile 
+
+When I say "ok" I mean a hot 90s mess. 
+
+Preloads the next images so having them ordered makes sense
+as then I can show images 1, 2 and preload 3 and 4.
+Then 40.4 seconds later show images 3, 4 and onto the next.
+
+My route for doing this is to bung the images into a big array
+then adding array to self a few times and then randomising.
+
+This is to allow the same images to randomly come up occasionally
+Instead of just once per cycle.
+
+Remember to support the b3ta patreon:
+patreon.com/b3ta
+
+Feel free to use this if you like - with credit please.
+
+https://github.com/robmanuel/b3ta404
+ -->
+
+
 <meta charset="UTF-8">
-<head><title>404 - file not found</title>
+<head><title>B3ta 404 - file not found</title>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
 <style type="text/css" >
@@ -20,14 +48,42 @@ body { font-family: Sans-Serif;}
 
 </style>
 
-<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
-<script type="text/javascript">
-_uacct = "UA-96813-1";
-urchinTracker();
-</script>
+	<!-- facebook -->
+	<meta property="og:title" content="B3ta 404 - file not found" />
+	<meta property="og:site_name" content="B3ta" />
+	<meta property="og:url" content="Sorry, no page here" />
+	<meta property="og:description" content="Look, no page is here. Go away." />
+	<meta property="og:image" content="http://b3ta.com/images/404/b3ta404.gif" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:type" content="article" />
+	<meta property="og:locale" content="en_GB" />
+	<meta property="fb:app_id" content="1689483604686863"/>
+	
+	<!-- twitter -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@b3ta" />
+	<meta name="twitter:title" content="B3ta 404 - file not found" />
+	<meta name="twitter:description" content="Sorry, no page here" />
+	<meta name="twitter:image" content="http://b3ta.com/images/404/b3ta404.gif" />
+	<meta name="twitter:url" content="" />
+            
+    <!-- Google Analytics -->
+	<script>
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-96813-1', 'auto');
+	ga('send', 'pageview');
+	</script>
+	<script async src='https://www.google-analytics.com/analytics.js'></script>
+	<!-- End Google Analytics -->
+
+
+
 
 </head>
 <body>
+
+
 
 <center>
 	<a href="http://b3ta.com/"><div id="slideshow" class="slideshow"></div></a>
@@ -35,6 +91,7 @@ urchinTracker();
 
 
 <script>
+
 urlstem="http://b3ta.com/images/404/"
 
 images=[
@@ -47,10 +104,10 @@ images=[
 		"bw404.jpg","dFDDJ7d.gif","Error404.jpg","giphy.gif","J2elcfU.jpg",
 		"JJonesSucksAss02.jpg","luckfuck.gif","may404.jpg","maychicken2.jpg",
 		"neverfound.jpg","obiwancopy.jpg","thumb.1q67bb.jpg",
-		"thumb.B3TA.submission.01.jpg","trumppressrelease.jpg","ys404.gif","3rror.jpg",
+		"thumb.B3TA.submission.01.jpg","trumppressrelease.jpg","ys404.gif","3rror2.jpg",
 		"404-i.jpg","404-justice.jpg","404.gif","404.jpg","4040.gif","4041.gif",
 		"40412.gif","4042.gif","4042.jpg","4043.jpg","4044.jpg","404454.jpg","4044561.jpg",
-		"4045.jpg","4046.jpg","4047.jpg","404b0.gif","404b3ta3ly.gif","404deacon.gif",
+		"4045.jpg","4046.jpg","4047.jpg","404b0.gif","404b3ta3ly.gif",
 		"404head7sp.gif","404ii5jp.jpg","404pipe.jpg","404small.jpg","404spack.gif",
 		"404v2.gif","404v5.gif","404watch_3304.jpg","404_boris.jpg","404_countdown.jpg",
 		"404_final.gif","404_fruitmachine.gif","404_pagesmissing.jpg","404_small.jpg",
@@ -61,18 +118,9 @@ images=[
 		"error816.gif","error843.gif","fruitsm.gif","gotyoururl.jpg","huge6ua.jpg",
 		"jeeves.gif","kitten404.jpg","loser.gif","maoo404.gif","quo3of.jpg","redex_mag.gif",
 		"scissors2.gif","shitcreekb3ta.jpg","tescovalue.jpg","testcard.jpg","untitled.gif",
-		"webnotfound404.jpg"]
+		"webnotfound404.jpg","N7E2CJi.gif"]
 
-// This might look mad but here's what I'm thinking:
-// I want to cache the images so having them ordered makes sense
-// as then I can show images 1, 2 and preload 3 and 4.
-// 
-// And if I then randomise the array then it's all random
-// however this is a bit rubbish as it means images don't
-// repeat in one cycle, and I want them to be less predictable
-// than that so I've basically copying the list of images
-// onto itself several times before sorting
-
+// Adding arrays to self is ugly in Javascript. But hey!
 
 Array.prototype.push.apply(images, images)
 Array.prototype.push.apply(images, images)
@@ -94,11 +142,13 @@ function changeImage(){
 
 	image1 = urlstem+images[0+counter]
 	image2 = urlstem+images[1+counter]
-	$.preloadImages(urlstem+images[2+counter]);
-	$.preloadImages(urlstem+images[3+counter]);
 
 	$('body').css("background-image", "url("+image2+")");  
 	$('#slideshow').css("background-image", "url("+image1+")");  
+
+	$.preloadImages(urlstem+images[2+counter]);
+	$.preloadImages(urlstem+images[3+counter]);
+
 
 
 	counter=counter+2
