@@ -98,13 +98,13 @@ images=[
 		"2005-404-1.jpg","2005-404-2.jpg","2005-404-4.jpg","2005-404-6.jpg","2005-404.gif",
 		"2005-404.jpg","countdown-funeral.gif","DarthVader.jpg","dav1.jpg","ED404.gif",
 		"fish.gif","hal_animated.gif","Maniacs.jpg","pageplant1.jpg","thumb.Ifoundthis.jpg",
-		"boris404.png","b3333ta.png",
+		"boris404.png","b3333ta.png","294i8g.gif","295581.gif","2962o5.gif",
 		"404-1.jpg","404-2.jpg","404-2017.jpg","404Finger.jpg","404l.jpg",
 		"404pt2_large.gif","404state.jpg","321404.gif","35113820235_5f30ae4472_o.gif",
 		"bw404.jpg","dFDDJ7d.gif","Error404.jpg","giphy.gif","J2elcfU.jpg",
 		"JJonesSucksAss02.jpg","luckfuck.gif","may404.jpg","maychicken2.jpg",
-		"neverfound.jpg","obiwancopy.jpg","thumb.1q67bb.jpg",
-		"thumb.B3TA.submission.01.jpg","trumppressrelease.jpg","ys404.gif","3rror2.jpg",
+		"neverfound.jpg","obiwancopy.jpg","thumb.1q67bb.jpg","3rror2.jpg",
+		"thumb.B3TA.submission.01.jpg","trumppressrelease.jpg","ys404.gif",
 		"404-i.jpg","404-justice.jpg","404.gif","404.jpg","4040.gif","4041.gif",
 		"40412.gif","4042.gif","4042.jpg","4043.jpg","4044.jpg","404454.jpg","4044561.jpg",
 		"4045.jpg","4046.jpg","4047.jpg","404b0.gif","404b3ta3ly.gif",
@@ -148,6 +148,11 @@ function changeImage(){
 	image1 = urlstem+images[0+counter]
 	image2 = urlstem+images[1+counter]
 
+	console.log ("counter:"+counter+"/"+images.length)
+	console.log ("background:"+image2)
+	console.log ("foreground:"+image1)
+
+
 	$('body').css("background-image", "url("+image2+")");  
 	$('#slideshow').css("background-image", "url("+image1+")");  
 
@@ -165,6 +170,25 @@ function changeImage(){
 		}
 
 }
+
+// press a key and next/previous image
+//
+// largely for testing but hey
+// no good reason to take it out
+// so a an exciting easter egg for those
+// who read the source
+//
+// forward	+ 
+// back		-
+
+
+$("body").on("keydown", function(e){
+	if(e.keyCode == 187){changeImage()}
+	if(e.keyCode == 189){counter=counter-4;if (counter<0) {counter=0};changeImage();}
+});
+
+
+$("body").focus();
 
 changeImage()
 
